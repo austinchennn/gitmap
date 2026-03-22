@@ -3,7 +3,8 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useGitMapStore } from '@/store/useGitMapStore'
-import { formatSize, getFileIcon } from '@/utils/d3-helpers'
+import { formatSize } from '@/utils/d3-helpers'
+import { FileIcon } from '@/components/ui/FileIcon'
 import { FileMetadata, DirectoryMetadata } from '@/types'
 
 const OFFSET = 15
@@ -56,12 +57,11 @@ export default function InspectorPopup() {
       <div className="bg-white/92 backdrop-blur-xl rounded-xl shadow-apple-2xl border border-black/5 p-3 w-64">
         {/* Header */}
         <div className="flex items-start gap-2 mb-3">
-          <span className="text-2xl leading-none flex-shrink-0 mt-0.5">
-            {getFileIcon(node.extension, node.type)}
+          <span className="flex-shrink-0 mt-0.5">
+            <FileIcon extension={node.extension} type={node.type} className="w-6 h-6" />
           </span>
           <div className="min-w-0">
             <p className="font-semibold text-apple-gray-900 text-sm truncate">{node.name}</p>
-            <p className="text-apple-gray-400 text-xs truncate mt-0.5">{node.path || '/'}</p>
           </div>
         </div>
 

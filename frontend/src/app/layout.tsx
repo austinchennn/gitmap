@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'RepoLens - GitHub Repository Visualizer',
+  title: 'GitMap - GitHub Repository Visualizer',
   description: 'Explore GitHub repositories with an Apple-style interactive treemap visualization',
 }
 

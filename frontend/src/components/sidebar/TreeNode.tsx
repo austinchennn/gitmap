@@ -3,7 +3,8 @@
 import { memo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FileNode } from '@/types'
-import { getFileIcon, formatSize } from '@/utils/d3-helpers'
+import { formatSize } from '@/utils/d3-helpers'
+import { FileIcon } from '@/components/ui/FileIcon'
 import { useGitMapStore } from '@/store/useGitMapStore'
 
 interface TreeNodeProps {
@@ -51,8 +52,8 @@ function TreeNode({ node, depth, expanded, onToggle }: TreeNodeProps) {
         </span>
 
         {/* Icon */}
-        <span className="text-sm leading-none flex-shrink-0">
-          {getFileIcon(node.extension, node.type)}
+        <span className="flex-shrink-0 flex items-center justify-center">
+          <FileIcon extension={node.extension} type={node.type} className="w-4 h-4" />
         </span>
 
         {/* Name */}

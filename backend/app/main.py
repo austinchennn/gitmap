@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
-    title="RepoLens API",
+    title="GitMap API",
     description="GitHub Repository Visualizer Backend",
     version="1.0.0",
 )
@@ -29,4 +29,4 @@ app.include_router(router, prefix="/api")
 
 @app.get("/")
 async def root():
-    return {"message": "RepoLens API", "docs": "/docs"}
+    return {"message": "GitMap API", "docs": "/docs"}

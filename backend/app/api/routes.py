@@ -74,4 +74,4 @@ async def analyze_repo(
 @router.get("/health")
 async def health_check():
     """Health check endpoint."""
-    return {"status": "ok", "service": "repolens-backend"}
+    return {"status": "ok", "service": "gitmap-backend"}

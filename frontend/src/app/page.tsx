@@ -24,7 +24,6 @@ export default function HomePage() {
     setLoading,
     setError,
     setSearchExpanded,
-    drillUp,
   } = useGitMapStore()
 
   const handleSearch = async (url: string) => {
@@ -76,7 +75,7 @@ export default function HomePage() {
                 <rect x="8" y="8" width="5" height="5" rx="1" fill="white" fillOpacity="0.4"/>
               </svg>
             </div>
-            <span className="font-semibold text-sm text-apple-gray-950">RepoLens</span>
+            <span className="font-semibold text-sm text-apple-gray-950">GitMap</span>
           </div>
 
           {/* Search Bar in Nav (when expanded) */}
@@ -93,6 +92,16 @@ export default function HomePage() {
             )}
           </AnimatePresence>
 
+          {repoData && (
+            <motion.div
+              initial={{ opacity: 0, x: 8 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex-1 min-w-0"
+            >
+              <PathBar />
+            </motion.div>
+          )}
+
           {/* View Toggle */}
           {repoData && (
             <motion.div
@@ -102,21 +111,6 @@ export default function HomePage() {
             >
               <ViewToggle />
             </motion.div>
-          )}
-
-          {/* Drill breadcrumb */}
-          {repoData && drillPath.length > 1 && (
-            <motion.button
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              onClick={drillUp}
-              className="flex items-center gap-1 text-apple-blue text-sm font-medium hover:opacity-70 transition-opacity ml-2"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              Back
-            </motion.button>
           )}
         </div>
       </motion.nav>
@@ -146,7 +140,7 @@ export default function HomePage() {
                     <rect x="18" y="18" width="12" height="12" rx="2" fill="white" fillOpacity="0.4"/>
                   </svg>
                 </div>
-                <h1 className="text-4xl font-bold text-apple-gray-950 tracking-tight">RepoLens</h1>
+                <h1 className="text-4xl font-bold text-apple-gray-950 tracking-tight">GitMap</h1>
                 <p className="text-apple-gray-500 mt-2 text-lg">
                   Explore any GitHub repository as an interactive treemap
                 </p>
@@ -267,9 +261,6 @@ export default function HomePage() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Path Bar */}
-      {hoveredNode && <PathBar />}
     </div>
   )
 }

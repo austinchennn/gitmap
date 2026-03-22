@@ -44,21 +44,3 @@ export function formatSize(bytes: number): string {
   const i = Math.floor(Math.log(bytes) / Math.log(k))
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(1))} ${sizes[i]}`
 }
-
-export function getFileIcon(extension: string | null, type: string): string {
-  if (type === 'directory') return '📁'
-  if (!extension) return '📄'
-  const icons: Record<string, string> = {
-    '.ts': '🔷', '.tsx': '⚛️', '.js': '🟡', '.jsx': '⚛️',
-    '.py': '🐍', '.java': '☕', '.go': '🐹', '.rs': '🦀',
-    '.html': '🌐', '.css': '🎨', '.scss': '🎨',
-    '.json': '📋', '.yaml': '📋', '.yml': '📋',
-    '.md': '📝', '.mdx': '📝', '.txt': '📃',
-    '.png': '🖼️', '.jpg': '🖼️', '.svg': '🎨', '.gif': '🖼️',
-    '.sh': '🐚', '.bash': '🐚',
-    '.sql': '🗄️',
-    '.pdf': '📕',
-    '.zip': '📦', '.tar': '📦', '.gz': '📦',
-  }
-  return icons[extension] ?? '📄'
-}

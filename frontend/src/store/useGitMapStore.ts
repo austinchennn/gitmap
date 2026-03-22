@@ -26,6 +26,7 @@ interface GitMapState {
   setViewMode: (mode: ViewMode) => void
   drillDown: (node: FileNode) => void
   drillUp: () => void
+  jumpToDepth: (depth: number) => void
   resetDrill: () => void
 }
 
@@ -59,6 +60,13 @@ export const useGitMapStore = create<GitMapState>((set, get) => ({
     set((state) => {
       if (state.drillPath.length <= 1) return state
       return { drillPath: state.drillPath.slice(0, -1) }
+    })
+  },
+
+  jumpToDepth: (depth) => {
+    set((state) => {
+      if (depth < 0 || depth >= state.drillPath.length) return state
+      return { drillPath: state.drillPath.slice(0, depth + 1) }
     })
   },
 

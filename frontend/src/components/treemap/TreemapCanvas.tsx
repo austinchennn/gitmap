@@ -39,11 +39,11 @@ function TreemapCanvas({ data }: TreemapCanvasProps) {
       .attr('width', width)
       .attr('height', height)
 
-    // Render leaves only
-    const leaves = root.leaves()
+    // Render only direct children of the current directory so folders are clickable.
+    const levelNodes = root.children ?? []
 
     const cell = g.selectAll<SVGGElement, d3.HierarchyRectangularNode<FileNode>>('g')
-      .data(leaves)
+      .data(levelNodes)
       .join('g')
       .attr('transform', (d) => `translate(${d.x0},${d.y0})`)
 
@@ -130,6 +130,7 @@ function TreemapCanvas({ data }: TreemapCanvasProps) {
       .data(nodes)
       .join('text')
       .attr('class', 'parent-label')
+      .attr('pointer-events', 'none')
       .attr('x', (d) => d.x0 + 4)
       .attr('y', (d) => d.y0 + 13)
       .attr('font-size', '10px')

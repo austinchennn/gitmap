@@ -23,7 +23,7 @@ def get_redis():
 
 
 def make_cache_key(repo_url: str) -> str:
-    return "repolens:" + hashlib.sha256(repo_url.encode()).hexdigest()
+    return "gitmap:" + hashlib.sha256(repo_url.encode()).hexdigest()
 
 
 def get_cached(repo_url: str) -> Optional[Any]:
